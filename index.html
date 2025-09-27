@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naitik Gupta - Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pacifico&display=swap" rel="stylesheet">
+
+  <!-- =================================================================================== -->
+  <!-- == CSS STYLES == -->
+  <!-- =================================================================================== -->
+  <style>
+    :root {
+      --gray-bg: #f7f7f7;
+      --gray-shadow: rgba(0,0,0,0.08);
+      --text-primary: #222;
+      --text-secondary: #555;
+      --accent-color: #007bff; /* A nice blue for buttons/highlights */
+    }
+
+    /* Basic Reset & Body Styling */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden; /* Prevents horizontal scroll from animations */
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 600;
+        line-height: 1.2;
+        margin-top: 0;
+    }
+
+    p {
+        margin-bottom: 1rem;
+    }
+
+    ul {
+        list-style: none; /* Remove default bullet points */
+        padding: 0;
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--accent-color);
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* --- Global Section Titles --- */
+    .section-title {
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        letter-spacing: -1px;
+        color: var(--text-primary);
+    }
+    .section-subtitle {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 3rem auto;
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+    }
+
+    /* --- NAVIGATION BAR --- */
+    nav {
+        max-width: 1200px;
+        margin: auto;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    nav .logo {
+        font-family: 'Pacifico', cursive;
+        font-size: 1.8rem;
+        text-decoration: none;
+        color: var(--text-primary);
+        font-weight: normal;
+    }
+    nav .contact-btn {
+        background: var(--text-primary);
+        color: #fff;
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: background 0.3s ease;
+    }
+    nav .contact-btn:hover {
+        background: var(--text-secondary);
+        text-decoration: none;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero-section {
+        padding: 6rem 1rem;
+        text-align: center;
+        background: linear-gradient(135deg, #e0f2f7 0%, #fefefe 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 70vh;
+    }
+    .hero-content {
+        max-width: 800px;
+        margin: auto;
+    }
+    .hero-section h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+    }
+    .hero-section .objective-text {
+        font-size: 1.3rem;
+        color: var(--text-secondary);
+        max-width: 700px;
+        margin: 0 auto 2rem auto;
+    }
+    .contact-info-hero {
+        margin-bottom: 2.5rem;
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+    }
+    .contact-info-hero p {
+        margin: 0.5rem 0;
+    }
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 2rem;
+        border: 4px solid #fff;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+    .view-work-btn {
+        display: inline-block;
+        background: var(--accent-color);
+        color: #fff;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        transition: background 0.3s ease, transform 0.2s ease;
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+    }
+    .view-work-btn:hover {
+        background: #0056b3;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    /* --- GENERAL SECTION STYLING --- */
+    .section {
+        padding: 4rem 1rem;
+        max-width: 1200px;
+        margin: auto;
+    }
+    .section:nth-of-type(even) {
+        background-color: var(--gray-bg);
+    }
+
+    /* --- ABOUT ME SECTION --- */
+    .about-content {
+        max-width: 800px;
+        margin: auto;
+        text-align: center;
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+    }
+    .about-content p {
+        margin-bottom: 1.5rem;
+    }
+
+    /* --- PORTFOLIO GRID (My Work) --- */
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    .portfolio-item {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px var(--gray-shadow);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .portfolio-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .portfolio-item img {
+        width: 100%;
+        /* REMOVED: height: 250px; */
+        object-fit: cover;
+        display: block;
+        border-bottom: 1px solid #eee;
+    }
+    .portfolio-item h3 {
+        margin: 1.2rem 1rem 0.5rem;
+        font-size: 1.3rem;
+        color: var(--text-primary);
+    }
+    .portfolio-item p {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        padding: 0 1rem 1.2rem;
+        margin-top: 0;
+    }
+
+    /* --- EXPERIENCE & EDUCATION SECTIONS --- */
+    .experience-list, .education-list {
+        max-width: 800px;
+        margin: 3rem auto;
+        display: grid;
+        gap: 2.5rem;
+    }
+    .experience-item, .education-item {
+        background: #fff;
+        padding: 1.5rem 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        border-left: 5px solid var(--accent-color);
+    }
+    .experience-item h3, .education-item h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+    .experience-item .duration, .education-item .duration {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        display: block;
+    }
+    .experience-item ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+        margin-top: 1rem;
+        color: var(--text-secondary);
+    }
+    .experience-item ul li {
+        margin-bottom: 0.5rem;
+    }
+
+    /* --- SKILLS SECTION --- */
+    .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        max-width: 900px;
+        margin: 3rem auto;
+    }
+    .skills-category {
+        background: #fff;
+        padding: 1.5rem 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        border-top: 5px solid var(--accent-color);
+    }
+    .skills-category h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-primary);
+        text-align: center;
+    }
+    .skills-category ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 0.8rem 1.5rem;
+    }
+    .skills-category ul li {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        position: relative;
+        padding-left: 1.5rem;
+    }
+    .skills-category ul li::before {
+        content: '•';
+        color: var(--accent-color);
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 1.2rem;
+        line-height: 1;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+        text-align: center;
+        padding: 2.5rem 1rem;
+        font-size: 0.95rem;
+        background: var(--text-primary);
+        color: var(--gray-bg);
+        margin-top: 3rem;
+    }
+
+    /* --- FADE-IN ANIMATION --- */
+    .fade-in-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* --- RESPONSIVE ADJUSTMENTS --- */
+    @media (max-width: 768px) {
+        .hero-section h1 {
+            font-size: 2.5rem;
+        }
+        .hero-section .objective-text {
+            font-size: 1rem;
+        }
+        .section-title {
+            font-size: 1.8rem;
+        }
+        .section-subtitle {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        .portfolio-grid {
+            grid-template-columns: 1fr;
+        }
+        .experience-list, .education-list, .skills-container {
+            gap: 1.5rem;
+        }
+        .skills-category ul {
+            grid-template-columns: 1fr;
+        }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="#" class="logo">Naitik Gupta</a>
+    <!-- This button now opens the user's default email client -->
+    <a href="mailto:naitikgupta159@gmail.com" class="contact-btn">Contact Me</a>
+  </nav>
+
+  <!-- Hero/Intro Section -->
+  <section class="hero-section fade-in-section">
+    <div class="hero-content">
+      <!-- Optional: Add your profile picture here -->
+      <!-- <img src="img-src/your-profile-pic.jpg" alt="Naitik Gupta Profile" class="profile-pic"> -->
+      <h1>Hello, I'm Naitik Gupta</h1>
+      <p class="objective-text">To grow in design and video editing while learning and developing new skills.</p>
+      <div class="contact-info-hero">
+        <p>👨‍💻 Graphic Designer & Video Editor</p>
+        <p>📱 +91 705 2450 264</p>
+        <p>📧 naitikgupta159@gmail.com</p>
+      </div>
+      <a href="#my-work" class="view-work-btn">View My Work</a>
+    </div>
+  </section>
+  
+  <!-- About Me Section -->
+  <section id="about" class="section fade-in-section">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content">
+        <p>As a passionate graphic designer and video editor, I am constantly seeking opportunities to grow my skills and create impactful visual content. My journey so far has involved contributing to creative design projects and editing diverse video content, from social media reels to educational videos.</p>
+        <p>I thrive in environments where I can learn new techniques and apply my creativity to bring ideas to life. I'm excited to collaborate on projects that challenge me and allow me to further develop my craft.</p>
+    </div>
+  </section>
+
+  <!-- My Work Section -->
+  <section id="my-work" class="section fade-in-section">
+    <h2 class="section-title">My Work</h2>
+    <p class="section-subtitle">A selection of my recent graphic design and video editing projects.</p>
+    <div class="portfolio-grid">
+      <!-- IMPORTANT: Replace these placeholders with your actual work images/previews -->
+      <div class="portfolio-item">
+        <img src="img-src/instagram-post-1.jpg" alt="Instagram Post Design">
+        <h3>Instagram Post Design</h3>
+        <p>Created engaging social media content.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="img-src/youtube-thumbnail-1.jpg" alt="YouTube Thumbnail Design">
+        <h3>YouTube Thumbnail</h3>
+        <p>Designed catchy thumbnails for video content.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="img-src/banner-design-1.jpg" alt="Website Banner Design">
+        <h3>Website Banner</h3>
+        <p>Crafted impactful banners for web platforms.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="img-src/logo-design-1.jpg" alt="Logo Design">
+        <h3>Logo Design</h3>
+        <p>Developed unique brand identities.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="img-src/reel-editing-1.jpg" alt="Reel Editing">
+        <h3>Reel Editing</h3>
+        <p>Edited dynamic short-form video content.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="img-src/magazine-cover-1.jpg" alt="Video Design">
+        <h3>Video Editing</h3>
+        <p>Creative Videos for ads.</p>
+      </div>
+      <!-- Add more portfolio items as needed -->
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section fade-in-section">
+    <h2 class="section-title">Experience</h2>
+    <div class="experience-list">
+      <div class="experience-item">
+        <h3>Graphic Designer, AdsAgency Hub</h3>
+        <p class="duration">6 months</p>
+        <ul>
+          <li>Worked on creative design projects for AB Deziners.</li>
+          <li>Edited various video content including reels, YouTube videos, and introductory educational videos.</li>
+        </ul>
+      </div>
+      <!-- Add more experience items if you have them -->
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section fade-in-section">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-container">
+      <div class="skills-category">
+        <h3>Design & Editing Software</h3>
+        <ul>
+          <li>Adobe Photoshop</li>
+          <li>Adobe Illustrator</li>
+          <li>Adobe InDesign</li>
+          <li>Adobe Audition</li>
+          <li>CorelDRAW</li>
+          <li>Figma</li>
+          <li>Adobe Premiere Pro</li>
+          <li>DaVinci Resolve</li>
+          <li>CapCut, InShot, Filmora</li>
+          <li>Adobe After Effects</li>
+          <li>MS Office</li>
+          <li>Other related software</li>
+        </ul>
+      </div>
+      <div class="skills-category">
+        <h3>Technical Skills</h3>
+        <ul>
+          <li>Instagram posts & reels</li>
+          <li>Youtube Thumbnails</li>
+          <li>Website Banners</li>
+          <li>Magazines & Book covers</li>
+          <li>Logo Design</li>
+          <li>UI design</li>
+          <li>Print Media Design</li>
+          <li>Reels Editing</li>
+          <li>Youtube Video Editing</li>
+          <li>Educational Videos</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="section fade-in-section">
+    <h2 class="section-title">Education</h2>
+    <div class="education-list">
+      <div class="education-item">
+        <h3>Bachelors in Science from CSJMU</h3>
+        <p class="duration">2025</p>
+      </div>
+      <div class="education-item">
+        <h3>Intermediate from UP Board</h3>
+        <p class="duration">2022</p>
+      </div>
+      <div class="education-item">
+        <h3>High School from UP Board</h3>
+        <p class="duration">2020</p>
+      </div>
+      <div class="education-item">
+        <h3>Graphic Design & Video Editing Course</h3>
+        <p class="duration">9 month Duration - Polyframe Academy of Arts</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="fade-in-section">
+    © 2024 Naitik Gupta — All Rights Reserved
+  </footer>
+
+  <!-- =================================================================================== -->
+  <!-- == JAVASCRIPT == -->
+  <!-- =================================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // --- INITIALIZE FADE-IN ON SCROLL ANIMATION ---
+      // This makes sections fade in as they become visible on scroll.
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  // We can unobserve the element after it has become visible
+                  // so the animation only happens once.
+                  observer.unobserve(entry.target);
+              }
+          });
+      }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+      // Observe all sections with the 'fade-in-section' class
+      document.querySelectorAll('.fade-in-section').forEach(section => {
+          observer.observe(section);
+      });
+
+    });
+  </script>
+
+</body>
+</html>
